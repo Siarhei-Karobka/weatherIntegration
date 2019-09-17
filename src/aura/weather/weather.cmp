@@ -1,24 +1,76 @@
-<!--
- - Created by OK on 16.09.2019.
- -->
 
 <aura:component description="weather" controller="WeatherLocator">
-    <aura:attribute name="cityInfo" type="CityWeather__c"/>
-    <aura:attribute name="choosedCity" type="String" default="Minsk,by"/>
+    <aura:attribute name="cityInfo" type="CityWeather__c" default="{ 'sobjectType': 'CityWeather__c',
+                        'Name': '',
+                        'Country__c': '',
+                        'Temp__c': '',
+                        'Pressure__c': '',
+                        'Humidity__c': '',
+                         'Description__c': ''}"/>
+    <!--<aura:attribute name="choosedCity" type="String" default="Minsk,by"/>-->
+    <aura:attribute name="choosedCity" type="String"/>
 
     <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
 
-    <lightning:input label="Choose City" type="text"
-                     name="cardName" placeholder="London,uk" maxlength="16"
-                     value="{!v.choosedCity}"
-                     required="true"/>
-    <lightning:button variant="brand"
-                      label="Press"
-                      title="Press"
-                      onclick="{!c.doInit}"/>
+    <!-- PAGE HEADER -->
+    <lightning:layout class="slds-page-header slds-page-header--object-home">
+        <lightning:layoutItem>
+            <lightning:icon iconName="action:freeze_user" alternativeText="Weather"/>
+        </lightning:layoutItem>
+        <lightning:layoutItem padding="horizontal-small">
+            <div class="page-section page-header">
 
-    <lightning:formattedNumber value="{!v.cityInfo.Name}"/>
-    <h1 class="slds-text-heading--label">Expenses</h1>
-    <h1>{!v.cityInfo.Name}</h1>
+                <h2 class="slds-text-heading--medium">Weather</h2>
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+    <!-- / PAGE HEADER -->
 
+    <div aria-labelledby="weatherForm">
+        <!-- BOXED AREA -->
+        <fieldset class="slds-box slds-theme--default slds-container--small">
+            <legend id="weatherForm" class="slds-text-heading--small
+          slds-p-vertical--medium">
+                Weather in your city
+            </legend>
+
+            <form class="slds-form--stacked">
+                <lightning:input aura:id="weatherForm"
+                                 label="Choose City" type="text"
+                                 name="cardName" placeholder="London,uk" maxlength="16"
+                                 value="{!v.choosedCity}"
+                                 required="true"/>
+                <lightning:input aura:id="weatherForm"
+                                 label="Country" type="text"
+                                 name="country"
+                                 value="{!v.cityInfo.Country__c}"
+                                 readonly="true"/>
+                <lightning:input aura:id="weatherForm"
+                                 label="Temperature" type="text"
+                                 name="temp"
+                                 value="{!v.cityInfo.Temp__c}"
+                                 readonly="true"/>
+                <lightning:input aura:id="weatherForm"
+                                 label="Pressure" type="text"
+                                 name="pressure"
+                                 value="{!v.cityInfo.Pressure__c}"
+                                 readonly="true"/>
+                <lightning:input aura:id="weatherForm"
+                                 label="Humidity" type="text"
+                                 name="humidity"
+                                 value="{!v.cityInfo.Humidity__c}"
+                                 readonly="true"/>
+                <!--<lightning:input aura:id="weatherForm"-->
+                                 <!--label="Description" type="text"-->
+                                 <!--name="description"-->
+                                 <!--value="{!v.cityInfo.Description__c}"-->
+                                 <!--readonly="true"/>-->
+                <lightning:button aura:id="weatherForm"
+                                  variant="brand"
+                                  label="Press"
+                                  title="Press"
+                                  onclick="{!c.doInit}"/>
+            </form>
+        </fieldset>
+    </div>
 </aura:component>

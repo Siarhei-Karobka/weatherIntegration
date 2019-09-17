@@ -7,7 +7,7 @@ public class JSON2ApexWeather_Test {
 
     // This test method should give 100% coverage
     static testMethod void testParse() {
-        String json = '{\"coord\":{\"lon\":27.56,\"lat\":53.9},\"weather\":[{\"id\":803,\"main\":\"Clouds\",\"description\":\"broken clouds\",\"icon\":\"04d\"}],\"base\":\"stations\",\"main\":{\"temp\":287.15,\"pressure\":1006,\"humidity\":58,\"temp_min\":287.15,\"temp_max\":287.15},\"visibility\":10000,\"wind\":{\"speed\":8,\"deg\":270,\"gust\":12},\"clouds\":{\"all\":75},\"dt\":1568622422,\"sys\":{\"type\":1,\"id\":8939,\"message\":0.006,\"country\":\"BY\",\"sunrise\":1568605438,\"sunset\":1568651151},\"timezone\":10800,\"id\":625144,\"name\":\"Minsk\",\"cod\":200}';
+        String json = '{\"coord\":{\"lon\":-0.13,\"lat\":51.51},\"weather\":[{\"id\":800,\"main\":\"Clear\",\"description\":\"clear sky\",\"icon\":\"01d\"}],\"base\":\"stations\",\"main\":{\"temp\":15.36,\"pressure\":1025,\"humidity\":55,\"temp_min\":13.89,\"temp_max\":16.67},\"visibility\":10000,\"wind\":{\"speed\":3.1,\"deg\":330},\"clouds\":{\"all\":0},\"dt\":1568715642,\"sys\":{\"type\":1,\"id\":1414,\"message\":0.0112,\"country\":\"GB\",\"sunrise\":1568698680,\"sunset\":1568743953},\"timezone\":3600,\"id\":2643743,\"name\":\"London\",\"cod\":200}';
         JSON2ApexWeather r = JSON2ApexWeather.parse(json);
         System.assert(r != null);
 
@@ -30,7 +30,6 @@ public class JSON2ApexWeather_Test {
         System.assert(objWind != null);
         System.assert(objWind.speed == null);
         System.assert(objWind.deg == null);
-        System.assert(objWind.gust == null);
 
         json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
         JSON2ApexWeather.Clouds objClouds = new JSON2ApexWeather.Clouds(System.JSON.createParser(json));
