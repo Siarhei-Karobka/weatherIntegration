@@ -1,6 +1,6 @@
 /**
- * Created by OK on 16.09.2019.
- */
+    * Created by OK on 16.09.2019.
+    */
 ({
     init: function (component) {
         var action = component.get("c.getWeather");

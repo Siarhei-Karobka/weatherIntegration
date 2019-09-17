@@ -1,4 +1,3 @@
-
 <aura:component description="weather" controller="WeatherLocator">
     <aura:attribute name="cityInfo" type="CityWeather__c" default="{ 'sobjectType': 'CityWeather__c',
                         'Name': '',
@@ -35,11 +34,12 @@
             </legend>
 
             <form class="slds-form--stacked">
-                <lightning:input aura:id="weatherForm"
-                                 label="Choose City" type="text"
-                                 name="cardName" placeholder="London,uk" maxlength="16"
-                                 value="{!v.choosedCity}"
-                                 required="true"/>
+                <lightning:input aura:id="weatherFormInput"
+                              label="Choose City" type="text"
+                              name="cardName" placeholder="London,uk" maxlength="16"
+                              value="{!v.choosedCity}"
+                              required="true"/>
+                <!-- заблокировать на ввод всего кроме english-->
                 <lightning:input aura:id="weatherForm"
                                  label="Country" type="text"
                                  name="country"
@@ -60,11 +60,6 @@
                                  name="humidity"
                                  value="{!v.cityInfo.Humidity__c}"
                                  readonly="true"/>
-                <!--<lightning:input aura:id="weatherForm"-->
-                                 <!--label="Description" type="text"-->
-                                 <!--name="description"-->
-                                 <!--value="{!v.cityInfo.Description__c}"-->
-                                 <!--readonly="true"/>-->
                 <lightning:button aura:id="weatherForm"
                                   variant="brand"
                                   label="Press"
