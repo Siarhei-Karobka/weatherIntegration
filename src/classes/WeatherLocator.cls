@@ -1,11 +1,13 @@
 public with sharing class WeatherLocator {
 
-    static final String APIKEY = '1ed86a7e0c837a75e8969303abce51fa';
+    static final String APIKEY = '1ed86a7e0c837a75e8969303abce51fa'; //openWeatherMap
+//    static final String APIKEY = '6d8b17470e90473aa7510820e1c54f14'; //weatherbit
 
     @AuraEnabled
     public static CityWeather__c getWeather(String city) {
 
         String weatherAPI = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&APPID=' + APIKEY + '&units=metric';
+//        String weatherAPI = 'https://api.weatherbit.io/v2.0/current?city=' + city + '&key=' + APIKEY;
 
         System.debug('str: ' + weatherAPI);
 

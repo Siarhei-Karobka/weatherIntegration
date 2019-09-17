@@ -11,6 +11,7 @@
             if (state === "SUCCESS") {
                 component.set("v.cityInfo", response.getReturnValue());
             } else {
+
                 console.log("Failed with state: " + state);
                 alert('Can\'t find your city!');
             }

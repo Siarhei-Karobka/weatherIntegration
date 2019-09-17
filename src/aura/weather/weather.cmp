@@ -1,12 +1,5 @@
 <aura:component description="weather" controller="WeatherLocator">
-    <aura:attribute name="cityInfo" type="CityWeather__c" default="{ 'sobjectType': 'CityWeather__c',
-                        'Name': '',
-                        'Country__c': '',
-                        'Temp__c': '',
-                        'Pressure__c': '',
-                        'Humidity__c': '',
-                         'Description__c': ''}"/>
-    <!--<aura:attribute name="choosedCity" type="String" default="Minsk,by"/>-->
+    <aura:attribute name="cityInfo" type="CityWeather__c" default="{ 'sobjectType': 'CityWeather__c'}"/>
     <aura:attribute name="choosedCity" type="String"/>
 
     <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
@@ -33,33 +26,75 @@
                 Weather in your city
             </legend>
 
-            <form class="slds-form--stacked">
+            <div>
                 <lightning:input aura:id="weatherFormInput"
-                              label="Choose City" type="text"
-                              name="cardName" placeholder="London,uk" maxlength="16"
-                              value="{!v.choosedCity}"
-                              required="true"/>
+                                 label="Choose City" type="text"
+                                 name="cardName" placeholder="London,uk" maxlength="16"
+                                 value="{!v.choosedCity}"
+                                 required="true"/>
+            </div>
+
+            <form class="slds-form--stacked">
+                                <!--/-->
+
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <tbody>
+                    <tr class="slds-hint-parent">
+                        <td data-label="Country">
+                            <div class="slds-truncate">Country</div>
+                        </td>
+                        <td data-label="Temperature">
+                            <div class="slds-truncate">{!v.cityInfo.Country__c}</div>
+                        </td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td data-label="Temperature">
+                            <div class="slds-truncate">Temperature</div>
+                        </td>
+                        <td data-label="Temperature">
+                            <div class="slds-truncate">{!v.cityInfo.Temp__c} C</div>
+                        </td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td data-label="Pressure">
+                            <div class="slds-truncate">Pressure</div>
+                        </td>
+                        <td data-label="Pressure">
+                            <div class="slds-truncate">{!v.cityInfo.Pressure__c} hpa</div>
+                        </td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <td data-label="Humidity">
+                            <div class="slds-truncate">Humidity</div>
+                        </td>
+                        <td data-label="Humidity">
+                            <div class="slds-truncate">{!v.cityInfo.Humidity__c} %</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
                 <!-- заблокировать на ввод всего кроме english-->
-                <lightning:input aura:id="weatherForm"
-                                 label="Country" type="text"
-                                 name="country"
-                                 value="{!v.cityInfo.Country__c}"
-                                 readonly="true"/>
-                <lightning:input aura:id="weatherForm"
-                                 label="Temperature" type="text"
-                                 name="temp"
-                                 value="{!v.cityInfo.Temp__c}"
-                                 readonly="true"/>
-                <lightning:input aura:id="weatherForm"
-                                 label="Pressure" type="text"
-                                 name="pressure"
-                                 value="{!v.cityInfo.Pressure__c}"
-                                 readonly="true"/>
-                <lightning:input aura:id="weatherForm"
-                                 label="Humidity" type="text"
-                                 name="humidity"
-                                 value="{!v.cityInfo.Humidity__c}"
-                                 readonly="true"/>
+                <!--<lightning:input aura:id="weatherForm"-->
+                                 <!--label="Country" type="text"-->
+                                 <!--name="country"-->
+                                 <!--value="{!v.cityInfo.Country__c}"-->
+                                 <!--readonly="true"/>-->
+                <!--<lightning:input aura:id="weatherForm"-->
+                                 <!--label="Temperature" type="text"-->
+                                 <!--name="temp"-->
+                                 <!--value="{!v.cityInfo.Temp__c}"-->
+                                 <!--readonly="true"/>-->
+                <!--<lightning:input aura:id="weatherForm"-->
+                                 <!--label="Pressure" type="text"-->
+                                 <!--name="pressure"-->
+                                 <!--value="{!v.cityInfo.Pressure__c}"-->
+                                 <!--readonly="true"/>-->
+                <!--<lightning:input aura:id="weatherForm"-->
+                                 <!--label="Humidity" type="text"-->
+                                 <!--name="humidity"-->
+                                 <!--value="{!v.cityInfo.Humidity__c}"-->
+                                 <!--readonly="true"/>-->
                 <lightning:button aura:id="weatherForm"
                                   variant="brand"
                                   label="Press"
@@ -69,3 +104,75 @@
         </fieldset>
     </div>
 </aura:component>
+
+<!--<aura:component description="weather" controller="WeatherLocator">-->
+    <!--<aura:attribute name="cityInfo" type="CityWeather__c" default="{ 'sobjectType': 'CityWeather__c',-->
+                        <!--'Name': '',-->
+                        <!--'Country__c': '',-->
+                        <!--'Temp__c': '',-->
+                        <!--'Pressure__c': '',-->
+                        <!--'Humidity__c': '',-->
+                         <!--'Description__c': ''}"/>-->
+    <!--&lt;!&ndash;<aura:attribute name="choosedCity" type="String" default="Minsk,by"/>&ndash;&gt;-->
+    <!--<aura:attribute name="choosedCity" type="String"/>-->
+
+    <!--<aura:handler name="init" action="{!c.doInit}" value="{!this}"/>-->
+
+    <!--&lt;!&ndash; PAGE HEADER &ndash;&gt;-->
+    <!--<lightning:layout class="slds-page-header slds-page-header&#45;&#45;object-home">-->
+        <!--<lightning:layoutItem>-->
+            <!--<lightning:icon iconName="action:freeze_user" alternativeText="Weather"/>-->
+        <!--</lightning:layoutItem>-->
+        <!--<lightning:layoutItem padding="horizontal-small">-->
+            <!--<div class="page-section page-header">-->
+
+                <!--<h2 class="slds-text-heading&#45;&#45;medium">Weather</h2>-->
+            <!--</div>-->
+        <!--</lightning:layoutItem>-->
+    <!--</lightning:layout>-->
+    <!--&lt;!&ndash; / PAGE HEADER &ndash;&gt;-->
+
+    <!--<div aria-labelledby="weatherForm">-->
+        <!--&lt;!&ndash; BOXED AREA &ndash;&gt;-->
+        <!--<fieldset class="slds-box slds-theme&#45;&#45;default slds-container&#45;&#45;small">-->
+            <!--<legend id="weatherForm" class="slds-text-heading&#45;&#45;small-->
+          <!--slds-p-vertical&#45;&#45;medium">-->
+                <!--Weather in your city-->
+            <!--</legend>-->
+
+            <!--<form class="slds-form&#45;&#45;stacked">-->
+                <!--<lightning:input aura:id="weatherFormInput"-->
+                              <!--label="Choose City" type="text"-->
+                              <!--name="cardName" placeholder="London,uk" maxlength="16"-->
+                              <!--value="{!v.choosedCity}"-->
+
+                              <!--required="true"/>-->
+                <!--&lt;!&ndash; заблокировать на ввод всего кроме english&ndash;&gt;-->
+                <!--<table class="slds-table slds-table_cell-buffer slds-table_bordered">-->
+                    <!--<tr>-->
+                        <!--<td>Country</td>-->
+                        <!--<td>{!v.cityInfo.Country__c}</td>-->
+                    <!--</tr>-->
+
+                    <!--<tr>-->
+                        <!--<td>Temperature</td>-->
+                        <!--<td>{!v.cityInfo.Temp__c}</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>Pressure</td>-->
+                        <!--<td>{!v.cityInfo.Pressure__c}</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>Humidity</td>-->
+                        <!--<td>{!v.cityInfo.Humidity__c}</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+                <!--<lightning:button aura:id="weatherForm"-->
+                                  <!--variant="brand"-->
+                                  <!--label="Press"-->
+                                  <!--title="Press"-->
+                                  <!--onclick="{!c.doInit}"/>-->
+            <!--</form>-->
+        <!--</fieldset>-->
+    <!--</div>-->
+<!--</aura:component>-->
