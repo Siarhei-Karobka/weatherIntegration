@@ -1,8 +1,9 @@
 <aura:component description="weather" controller="WeatherLocator">
-    <aura:attribute name="cityInfo" type="CityWeather__c" default="{ 'sobjectType': 'CityWeather__c'}"/>
+    <aura:attribute name="cityInfo" type="SObject"/>
     <aura:attribute name="choosedCity" type="String"/>
-
-    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:attribute name="cityData" type="List"/>
+    <aura:attribute name="errorMessage" type="String"/>
+    <aura:attribute name="showErrors" type="boolean" default="false"/>
 
     <!-- PAGE HEADER -->
     <lightning:layout class="slds-page-header slds-page-header--object-home">
@@ -11,83 +12,84 @@
         </lightning:layoutItem>
         <lightning:layoutItem padding="horizontal-small">
             <div class="page-section page-header">
-
-                <h2 class="slds-text-heading--medium">Weather</h2>
+                <h2 class="slds-text-heading--medium">Weather APP</h2>
             </div>
         </lightning:layoutItem>
     </lightning:layout>
-    <!-- / PAGE HEADER -->
+    <!-- PAGE HEADER -->
 
-    <div aria-labelledby="weatherForm">
+    <!--Choose city form-->
+    <lightning:layout>
+        <lightning:layoutItem padding="around-small" size="6">
 
-        <fieldset class="slds-box slds-theme--default slds-container--small">
-            <legend id="weatherForm" class="slds-text-heading--small
+            <fieldset class="slds-box slds-theme--default slds-container--middle">
+
+                <legend id="weatherForm" class="slds-text-heading--small
           slds-p-vertical--medium">
-                Weather in your city
-            </legend>
+                    Choose City
+                </legend>
 
-            <div>
+                <!--<ui:inputText keyDown=""/>-->
+                <!--keyDown="{!c.onKeyDown}"-->
+                <!--<ui:inputText keyDown="{!c.onKeyDown}"-->
+                <!--label="Choose City"-->
+                <!--required="true"-->
+                <!--placeholder="London,UK"-->
+                <!--maxLength="16"-->
+                <!--value="{!v.choosedCity}"/>-->
+
                 <lightning:input aura:id="weatherFormInput"
                                  label="Choose City" type="text"
-                                 name="cardName" placeholder="London,uk" maxlength="16"
+                                 name="cardName" placeholder="London,UK" maxlength="16"
                                  value="{!v.choosedCity}"
                                  required="true"/>
+                <lightning:layoutItem padding="vertical-small">
+                    <lightning:button aura:id="weatherForm"
+                                      variant="brand"
+                                      label="One Day"
+                                      title="One Day"
+                                      value="1"
+                                      onclick="{!c.doInit}"/>
+                    <lightning:button aura:id="weatherForm"
+                                      variant="brand"
+                                      label="Seven Days"
+                                      title="Seven Days"
+                                      value="7"
+                                      onclick="{!c.doInit}"/>
+                    <lightning:button aura:id="weatherForm"
+                                      variant="brand"
+                                      label="Sixteen Days"
+                                      title="Sixteen Days"
+                                      value="16"
+                                      onclick="{!c.doInit}"/>
+                </lightning:layoutItem>
+            </fieldset>
+
+        </lightning:layoutItem>
+    </lightning:layout>
+    <!--Choose city form-->
+
+    <!--Error Message-->
+    <aura:if isTrue="{!v.showErrors}">
+        <div class="slds-notify slds-notify_toast slds-theme_error">
+            <span class="slds-assistive-text">error</span>
+            <div class="slds-notify__content">
+                <h5 class="slds-text-heading_small slds-align_absolute-center">Sorry we can't find: {!v.choosedCity}</h5>
+                <br/>
+                <p>For a more accurate search write: </p>
+                <p>Your city name, comma, country code</p>
+                <p>Example: London,GB</p>
             </div>
+        </div>
+    </aura:if>
+    <!--Error Message-->
 
-            <form class="slds-form--stacked">
-                                <!--/-->
+    <!--Weather List-->
+    <lightning:layout>
+        <lightning:layoutItem padding="around-small" size="6">
+            <c:weatherList cityData="{!v.cityData}" cityInformation="{!v.cityInfo}"/>
+        </lightning:layoutItem>
+    </lightning:layout>
+    <!--Weather List-->
 
-                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
-                    <tbody>
-                    <tr class="slds-hint-parent">
-                        <td data-label="Country">
-                            <div class="slds-truncate">Country</div>
-                        </td>
-                        <td data-label="Temperature">
-                            <div class="slds-truncate">{!v.cityInfo.Country__c}</div>
-                        </td>
-                    </tr>
-                    <tr class="slds-hint-parent">
-                        <td data-label="Temperature">
-                            <div class="slds-truncate">Temperature</div>
-                        </td>
-                        <td data-label="Temperature">
-                            <div class="slds-truncate">{!v.cityInfo.Temp__c} C</div>
-                        </td>
-                    </tr>
-                    <tr class="slds-hint-parent">
-                        <td data-label="Pressure">
-                            <div class="slds-truncate">Pressure</div>
-                        </td>
-                        <td data-label="Pressure">
-                            <div class="slds-truncate">{!v.cityInfo.Pressure__c} hpa</div>
-                        </td>
-                    </tr>
-                    <tr class="slds-hint-parent">
-                        <td data-label="Humidity">
-                            <div class="slds-truncate">Humidity</div>
-                        </td>
-                        <td data-label="Humidity">
-                            <div class="slds-truncate">{!v.cityInfo.Humidity__c} %</div>
-                        </td>
-                    </tr>
-                    <tr class="slds-hint-parent">
-                        <td data-label="Description">
-                            <div class="slds-truncate">Description</div>
-                        </td>
-                        <td data-label="Humidity">
-                            <div class="slds-truncate">{!v.cityInfo.Description__c}</div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <lightning:button aura:id="weatherForm"
-                                  variant="brand"
-                                  label="Press"
-                                  title="Press"
-                                  onclick="{!c.doInit}"/>
-            </form>
-        </fieldset>
-    </div>
 </aura:component>

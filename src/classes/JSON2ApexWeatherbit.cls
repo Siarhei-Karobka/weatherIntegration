@@ -6,7 +6,7 @@ public class JSON2ApexWeatherbit {
 
     public class Weather {
         public String icon {get;set;}
-        public String code {get;set;}
+        public Integer code {get;set;}
         public String description {get;set;}
 
         public Weather(JSONParser parser) {
@@ -17,7 +17,7 @@ public class JSON2ApexWeatherbit {
                         if (text == 'icon') {
                             icon = parser.getText();
                         } else if (text == 'code') {
-                            code = parser.getText();
+                            code = parser.getIntegerValue();
                         } else if (text == 'description') {
                             description = parser.getText();
                         } else {
@@ -31,123 +31,118 @@ public class JSON2ApexWeatherbit {
     }
 
     public class Data {
+        public Integer moonrise_ts {get;set;}
+        public String wind_cdir {get;set;}
         public Integer rh {get;set;}
-        public String pod {get;set;}
-        public Double lon {get;set;}
         public Double pres {get;set;}
-        public String timezone {get;set;}
-        public String ob_time {get;set;}
-        public String country_code {get;set;}
+        public Integer sunset_ts {get;set;}
+        public Double ozone {get;set;}
+        public Double moon_phase {get;set;}
+        public Double wind_gust_spd {get;set;}
+        public Integer snow_depth {get;set;}
         public Integer clouds {get;set;}
         public Integer ts {get;set;}
-        public Double solar_rad {get;set;}
-        public String state_code {get;set;}
-        public String city_name {get;set;}
+        public Integer sunrise_ts {get;set;}
+        public Double app_min_temp {get;set;}
         public Double wind_spd {get;set;}
-        public String last_ob_time {get;set;}
+        public Integer pop {get;set;}
         public String wind_cdir_full {get;set;}
-        public String wind_cdir {get;set;}
         public Double slp {get;set;}
+        public Double app_max_temp {get;set;}
         public Double vis {get;set;}
-        public Double h_angle {get;set;}
-        public String sunset {get;set;}
-        public Double dni {get;set;}
         public Double dewpt {get;set;}
         public Integer snow {get;set;}
         public Double uv {get;set;}
-        public Integer precip {get;set;}
+        public String valid_date {get;set;}
         public Integer wind_dir {get;set;}
-        public String sunrise {get;set;}
-        public Double ghi {get;set;}
-        public Double dhi {get;set;}
-        public Integer aqi {get;set;}
-        public Double lat {get;set;}
+        public Object max_dhi {get;set;}
+        public Integer clouds_hi {get;set;}
+        public Double precip {get;set;}
         public Weather weather {get;set;}
+        public Double max_temp {get;set;}
+        public Integer moonset_ts {get;set;}
+//        public String wind_cdir {get;set;}
         public String daytime {get;set;}
         public Double temp {get;set;}
-        public String station {get;set;}
-        public Double elev_angle {get;set;}
-        public Double app_temp {get;set;}
+        public Double min_temp {get;set;}
+        public Integer clouds_mid {get;set;}
+        public Integer clouds_low {get;set;}
 
         public Data(JSONParser parser) {
             while (parser.nextToken() != System.JSONToken.END_OBJECT) {
                 if (parser.getCurrentToken() == System.JSONToken.FIELD_NAME) {
                     String text = parser.getText();
                     if (parser.nextToken() != System.JSONToken.VALUE_NULL) {
-                        if (text == 'rh') {
+                        if (text == 'moonrise_ts') {
+                            moonrise_ts = parser.getIntegerValue();
+                        } else if (text == 'wind_cdir') {
+                            wind_cdir = parser.getText();
+                        } else if (text == 'rh') {
                             rh = parser.getIntegerValue();
-                        } else if (text == 'pod') {
-                            pod = parser.getText();
-                        } else if (text == 'lon') {
-                            lon = parser.getDoubleValue();
                         } else if (text == 'pres') {
                             pres = parser.getDoubleValue();
-                        } else if (text == 'timezone') {
-                            timezone = parser.getText();
-                        } else if (text == 'ob_time') {
-                            ob_time = parser.getText();
-                        } else if (text == 'country_code') {
-                            country_code = parser.getText();
+                        } else if (text == 'sunset_ts') {
+                            sunset_ts = parser.getIntegerValue();
+                        } else if (text == 'ozone') {
+                            ozone = parser.getDoubleValue();
+                        } else if (text == 'moon_phase') {
+                            moon_phase = parser.getDoubleValue();
+                        } else if (text == 'wind_gust_spd') {
+                            wind_gust_spd = parser.getDoubleValue();
+                        } else if (text == 'snow_depth') {
+                            snow_depth = parser.getIntegerValue();
                         } else if (text == 'clouds') {
                             clouds = parser.getIntegerValue();
                         } else if (text == 'ts') {
                             ts = parser.getIntegerValue();
-                        } else if (text == 'solar_rad') {
-                            solar_rad = parser.getDoubleValue();
-                        } else if (text == 'state_code') {
-                            state_code = parser.getText();
-                        } else if (text == 'city_name') {
-                            city_name = parser.getText();
+                        } else if (text == 'sunrise_ts') {
+                            sunrise_ts = parser.getIntegerValue();
+                        } else if (text == 'app_min_temp') {
+                            app_min_temp = parser.getDoubleValue();
                         } else if (text == 'wind_spd') {
                             wind_spd = parser.getDoubleValue();
-                        } else if (text == 'last_ob_time') {
-                            last_ob_time = parser.getText();
+                        } else if (text == 'pop') {
+                            pop = parser.getIntegerValue();
                         } else if (text == 'wind_cdir_full') {
                             wind_cdir_full = parser.getText();
-                        } else if (text == 'wind_cdir') {
-                            wind_cdir = parser.getText();
                         } else if (text == 'slp') {
                             slp = parser.getDoubleValue();
+                        } else if (text == 'app_max_temp') {
+                            app_max_temp = parser.getIntegerValue();
                         } else if (text == 'vis') {
                             vis = parser.getDoubleValue();
-                        } else if (text == 'h_angle') {
-                            h_angle = parser.getDoubleValue();
-                        } else if (text == 'sunset') {
-                            sunset = parser.getText();
-                        } else if (text == 'dni') {
-                            dni = parser.getDoubleValue();
                         } else if (text == 'dewpt') {
                             dewpt = parser.getDoubleValue();
                         } else if (text == 'snow') {
                             snow = parser.getIntegerValue();
                         } else if (text == 'uv') {
                             uv = parser.getDoubleValue();
-                        } else if (text == 'precip') {
-                            precip = parser.getIntegerValue();
+                        } else if (text == 'valid_date') {
+                            valid_date = parser.getText();
                         } else if (text == 'wind_dir') {
                             wind_dir = parser.getIntegerValue();
-                        } else if (text == 'sunrise') {
-                            sunrise = parser.getText();
-                        } else if (text == 'ghi') {
-                            ghi = parser.getDoubleValue();
-                        } else if (text == 'dhi') {
-                            dhi = parser.getDoubleValue();
-                        } else if (text == 'aqi') {
-                            aqi = parser.getIntegerValue();
-                        } else if (text == 'lat') {
-                            lat = parser.getDoubleValue();
+                        } else if (text == 'max_dhi') {
+                            max_dhi = parser.readValueAs(Object.class);
+                        } else if (text == 'clouds_hi') {
+                            clouds_hi = parser.getIntegerValue();
+                        } else if (text == 'precip') {
+                            precip = parser.getDoubleValue();
                         } else if (text == 'weather') {
                             weather = new Weather(parser);
+                        } else if (text == 'max_temp') {
+                            max_temp = parser.getDoubleValue();
+                        } else if (text == 'moonset_ts') {
+                            moonset_ts = parser.getIntegerValue();
                         } else if (text == 'datetime') {
                             daytime = parser.getText();
                         } else if (text == 'temp') {
                             temp = parser.getDoubleValue();
-                        } else if (text == 'station') {
-                            station = parser.getText();
-                        } else if (text == 'elev_angle') {
-                            elev_angle = parser.getDoubleValue();
-                        } else if (text == 'app_temp') {
-                            app_temp = parser.getDoubleValue();
+                        } else if (text == 'min_temp') {
+                            min_temp = parser.getDoubleValue();
+                        } else if (text == 'clouds_mid') {
+                            clouds_mid = parser.getIntegerValue();
+                        } else if (text == 'clouds_low') {
+                            clouds_low = parser.getIntegerValue();
                         } else {
                             System.debug(LoggingLevel.WARN, 'Data consuming unrecognized property: '+text);
                             consumeObject(parser);
@@ -159,8 +154,12 @@ public class JSON2ApexWeatherbit {
     }
 
     public List<Data> data {get;set;}
-    public Integer count {get;set;}
-    public Data data1 {get;set;}
+    public String city_name {get;set;}
+    public String lon {get;set;}
+    public String timezone {get;set;}
+    public String lat {get;set;}
+    public String country_code {get;set;}
+    public String state_code {get;set;}
 
     public JSON2ApexWeatherbit(JSONParser parser) {
         while (parser.nextToken() != System.JSONToken.END_OBJECT) {
@@ -169,8 +168,18 @@ public class JSON2ApexWeatherbit {
                 if (parser.nextToken() != System.JSONToken.VALUE_NULL) {
                     if (text == 'data') {
                         data = arrayOfData(parser);
-                    } else if (text == 'count') {
-                        count = parser.getIntegerValue();
+                    } else if (text == 'city_name') {
+                        city_name = parser.getText();
+                    } else if (text == 'lon') {
+                        lon = parser.getText();
+                    } else if (text == 'timezone') {
+                        timezone = parser.getText();
+                    } else if (text == 'lat') {
+                        lat = parser.getText();
+                    } else if (text == 'country_code') {
+                        country_code = parser.getText();
+                    } else if (text == 'state_code') {
+                        state_code = parser.getText();
                     } else {
                         System.debug(LoggingLevel.WARN, 'JSON2ApexWeatherbit consuming unrecognized property: '+text);
                         consumeObject(parser);
@@ -203,7 +212,6 @@ public class JSON2ApexWeatherbit {
 
 
 
-
     private static List<Data> arrayOfData(System.JSONParser p) {
         List<Data> res = new List<Data>();
         if (p.getCurrentToken() == null) p.nextToken();
@@ -212,6 +220,10 @@ public class JSON2ApexWeatherbit {
         }
         return res;
     }
+
+
+
+
 
 
 

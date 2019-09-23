@@ -7,7 +7,7 @@ public class JSON2ApexWeatherbit_Test {
 
     // This test method should give 100% coverage
     static testMethod void testParse() {
-        String json = '{\"data\":[{\"rh\":61,\"pod\":\"d\",\"lon\":27.56667,\"pres\":977.205,\"timezone\":\"Europe\\/Minsk\",\"ob_time\":\"2019-09-18 09:20\",\"country_code\":\"BY\",\"clouds\":100,\"ts\":1568798421,\"solar_rad\":151.283,\"state_code\":\"04\",\"city_name\":\"Minsk\",\"wind_spd\":4.87173,\"last_ob_time\":\"2019-09-18T08:30:00\",\"wind_cdir_full\":\"west-northwest\",\"wind_cdir\":\"WNW\",\"slp\":1002.42,\"vis\":12.433,\"h_angle\":-25.7,\"sunset\":\"16:17\",\"dni\":831.69,\"dewpt\":2.5,\"snow\":0,\"uv\":1.38487,\"precip\":0,\"wind_dir\":301,\"sunrise\":\"03:46\",\"ghi\":605.13,\"dhi\":102.4,\"aqi\":26,\"lat\":53.9,\"weather\":{\"icon\":\"c04d\",\"code\":\"804\",\"description\":\"Overcast clouds\"},\"datetime\":\"2019-09-18:09\",\"temp\":9.6,\"station\":\"UMMS\",\"elev_angle\":36.14,\"app_temp\":9.6}],\"count\":1}';
+        String json = '{\"data\":[{\"moonrise_ts\":1568948187,\"wind_cdir\":\"E\",\"rh\":74,\"pres\":1002.38,\"sunset_ts\":1568938296,\"ozone\":269.299,\"moon_phase\":0.642568,\"wind_gust_spd\":9.2,\"snow_depth\":0,\"clouds\":13,\"ts\":1568869260,\"sunrise_ts\":1568894123,\"app_min_temp\":22.7,\"wind_spd\":2.45452,\"pop\":15,\"wind_cdir_full\":\"east\",\"slp\":1014.4,\"app_max_temp\":30,\"vis\":24.1,\"dewpt\":19.7,\"snow\":0,\"uv\":6.63757,\"valid_date\":\"2019-09-19\",\"wind_dir\":94,\"max_dhi\":null,\"clouds_hi\":8,\"precip\":0.4375,\"weather\":{\"icon\":\"c02d\",\"code\":801,\"description\":\"Few clouds\"},\"max_temp\":28.6,\"moonset_ts\":1568915316,\"datetime\":\"2019-09-19\",\"temp\":24.9,\"min_temp\":21.9,\"clouds_mid\":5,\"clouds_low\":6},{\"moonrise_ts\":1569036746,\"wind_cdir\":\"ESE\",\"rh\":93,\"pres\":1005.17,\"sunset_ts\":1569024610,\"ozone\":273.916,\"moon_phase\":0.642568,\"wind_gust_spd\":14.2,\"snow_depth\":0,\"clouds\":53,\"ts\":1568955660,\"sunrise_ts\":1568980566,\"app_min_temp\":19.6,\"wind_spd\":2.7104,\"pop\":65,\"wind_cdir_full\":\"east-southeast\",\"slp\":1017.32,\"app_max_temp\":22.7,\"vis\":23.0875,\"dewpt\":19.1,\"snow\":0,\"uv\":2.98365,\"valid_date\":\"2019-09-20\",\"wind_dir\":114,\"max_dhi\":null,\"clouds_hi\":39,\"precip\":5.4375,\"weather\":{\"icon\":\"t02d\",\"code\":201,\"description\":\"Thunderstorm with rain\"},\"max_temp\":22.4,\"moonset_ts\":1569001716,\"datetime\":\"2019-09-20\",\"temp\":20.4,\"min_temp\":19,\"clouds_mid\":43,\"clouds_low\":30},{\"moonrise_ts\":1569125619,\"wind_cdir\":\"SSE\",\"rh\":83,\"pres\":1002.28,\"sunset_ts\":1569110923,\"ozone\":265.995,\"moon_phase\":0.536207,\"wind_gust_spd\":10.641,\"snow_depth\":0,\"clouds\":69,\"ts\":1569042060,\"sunrise_ts\":1569067010,\"app_min_temp\":19.3,\"wind_spd\":2.65145,\"pop\":20,\"wind_cdir_full\":\"south-southeast\",\"slp\":1018.57,\"app_max_temp\":31.3,\"vis\":24.135,\"dewpt\":20,\"snow\":0,\"uv\":2.72971,\"valid_date\":\"2019-09-21\",\"wind_dir\":148,\"max_dhi\":null,\"clouds_hi\":4,\"precip\":0.125,\"weather\":{\"icon\":\"c03d\",\"code\":803,\"description\":\"Broken clouds\"},\"max_temp\":29.3,\"moonset_ts\":1569091732,\"datetime\":\"2019-09-21\",\"temp\":23.3,\"min_temp\":18.8,\"clouds_mid\":1,\"clouds_low\":67}],\"city_name\":\"London\",\"lon\":\"-93.25296\",\"timezone\":\"America\\/Chicago\",\"lat\":\"35.32897\",\"country_code\":\"US\",\"state_code\":\"AR\"}';
         JSON2ApexWeatherbit r = JSON2ApexWeatherbit.parse(json);
         System.assert(r != null);
 
@@ -21,48 +21,51 @@ public class JSON2ApexWeatherbit_Test {
         json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
         JSON2ApexWeatherbit.Data objData = new JSON2ApexWeatherbit.Data(System.JSON.createParser(json));
         System.assert(objData != null);
+        System.assert(objData.moonrise_ts == null);
+        System.assert(objData.wind_cdir == null);
         System.assert(objData.rh == null);
-        System.assert(objData.pod == null);
-        System.assert(objData.lon == null);
         System.assert(objData.pres == null);
-        System.assert(objData.timezone == null);
-        System.assert(objData.ob_time == null);
-        System.assert(objData.country_code == null);
+        System.assert(objData.sunset_ts == null);
+        System.assert(objData.ozone == null);
+        System.assert(objData.moon_phase == null);
+        System.assert(objData.wind_gust_spd == null);
+        System.assert(objData.snow_depth == null);
         System.assert(objData.clouds == null);
         System.assert(objData.ts == null);
-        System.assert(objData.solar_rad == null);
-        System.assert(objData.state_code == null);
-        System.assert(objData.city_name == null);
+        System.assert(objData.sunrise_ts == null);
+        System.assert(objData.app_min_temp == null);
         System.assert(objData.wind_spd == null);
-        System.assert(objData.last_ob_time == null);
+        System.assert(objData.pop == null);
         System.assert(objData.wind_cdir_full == null);
-        System.assert(objData.wind_cdir == null);
         System.assert(objData.slp == null);
+        System.assert(objData.app_max_temp == null);
         System.assert(objData.vis == null);
-        System.assert(objData.h_angle == null);
-        System.assert(objData.sunset == null);
-        System.assert(objData.dni == null);
         System.assert(objData.dewpt == null);
         System.assert(objData.snow == null);
         System.assert(objData.uv == null);
-        System.assert(objData.precip == null);
+        System.assert(objData.valid_date == null);
         System.assert(objData.wind_dir == null);
-        System.assert(objData.sunrise == null);
-        System.assert(objData.ghi == null);
-        System.assert(objData.dhi == null);
-        System.assert(objData.aqi == null);
-        System.assert(objData.lat == null);
+        System.assert(objData.max_dhi == null);
+        System.assert(objData.clouds_hi == null);
+        System.assert(objData.precip == null);
         System.assert(objData.weather == null);
+        System.assert(objData.max_temp == null);
+        System.assert(objData.moonset_ts == null);
         System.assert(objData.daytime == null);
         System.assert(objData.temp == null);
-        System.assert(objData.station == null);
-        System.assert(objData.elev_angle == null);
-        System.assert(objData.app_temp == null);
+        System.assert(objData.min_temp == null);
+        System.assert(objData.clouds_mid == null);
+        System.assert(objData.clouds_low == null);
 
         json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
         JSON2ApexWeatherbit objJSON2ApexWeatherbit = new JSON2ApexWeatherbit(System.JSON.createParser(json));
         System.assert(objJSON2ApexWeatherbit != null);
         System.assert(objJSON2ApexWeatherbit.data == null);
-        System.assert(objJSON2ApexWeatherbit.count == null);
+        System.assert(objJSON2ApexWeatherbit.city_name == null);
+        System.assert(objJSON2ApexWeatherbit.lon == null);
+        System.assert(objJSON2ApexWeatherbit.timezone == null);
+        System.assert(objJSON2ApexWeatherbit.lat == null);
+        System.assert(objJSON2ApexWeatherbit.country_code == null);
+        System.assert(objJSON2ApexWeatherbit.state_code == null);
     }
 }
