@@ -2,6 +2,7 @@
     <aura:attribute name="cityData" type="List"/>
     <aura:attribute name="cityInformation" type="SObject"/>
 
+
     <lightning:card title="{!'Weather in ' + v.cityInformation.city_name + ' ' + v.cityInformation.country_code}">
         <table class="slds-table slds-table_cell-buffer slds-table_bordered">
             <thead>
@@ -36,7 +37,7 @@
                         <div class="slds-truncate" title="Description">{!data.weather.description}</div>
                     </th>
                     <th class="" scope="col">
-                        <div class="slds-truncate" title="Temperature">{!data.temp}</div>
+                        <div class="slds-truncate"  title="Temperature">{!data.temp}</div>
                     </th>
                     <th class="" scope="col">
                         <div class="slds-truncate" title="Pressure">{!data.pres}</div>

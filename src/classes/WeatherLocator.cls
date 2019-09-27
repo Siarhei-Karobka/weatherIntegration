@@ -26,6 +26,14 @@ public with sharing class WeatherLocator {
             result = response.getBody();
         }
 
+
+//        JSON2ApexWeather smth = (JSON2ApexWeather) System.JSON.deserialize(response.getBody(), JSON2ApexWeather.class);
+//        parsedCityWeather.Name = smth.name;
+//        parsedCityWeather.Temp__c = smth.main.temp;
+//        parsedCityWeather.Country__c = smth.sys.country;
+//        parsedCityWeather.Pressure__c = smth.main.pressure;
+//        parsedCityWeather.Humidity__c = smth.main.humidity;
+
         return result;
     }
 }

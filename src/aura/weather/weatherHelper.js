@@ -10,7 +10,7 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 var responseObj = JSON.parse(response.getReturnValue());
-                if (responseObj != null) {
+                if (responseObj !== null) {
                     var cityInfo = {
                         city_name: responseObj.city_name,
                         country_code: responseObj.country_code
